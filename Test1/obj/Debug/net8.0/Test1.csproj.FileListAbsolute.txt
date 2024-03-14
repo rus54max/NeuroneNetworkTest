@@ -1,0 +1,14 @@
+C:\_ProgectNeuronNetwork\Test1\bin\Debug\net8.0\Test1.exe
+C:\_ProgectNeuronNetwork\Test1\bin\Debug\net8.0\Test1.deps.json
+C:\_ProgectNeuronNetwork\Test1\bin\Debug\net8.0\Test1.runtimeconfig.json
+C:\_ProgectNeuronNetwork\Test1\bin\Debug\net8.0\Test1.dll
+C:\_ProgectNeuronNetwork\Test1\bin\Debug\net8.0\Test1.pdb
+C:\_ProgectNeuronNetwork\Test1\obj\Debug\net8.0\Test1.GeneratedMSBuildEditorConfig.editorconfig
+C:\_ProgectNeuronNetwork\Test1\obj\Debug\net8.0\Test1.AssemblyInfoInputs.cache
+C:\_ProgectNeuronNetwork\Test1\obj\Debug\net8.0\Test1.AssemblyInfo.cs
+C:\_ProgectNeuronNetwork\Test1\obj\Debug\net8.0\Test1.csproj.CoreCompileInputs.cache
+C:\_ProgectNeuronNetwork\Test1\obj\Debug\net8.0\Test1.dll
+C:\_ProgectNeuronNetwork\Test1\obj\Debug\net8.0\refint\Test1.dll
+C:\_ProgectNeuronNetwork\Test1\obj\Debug\net8.0\Test1.pdb
+C:\_ProgectNeuronNetwork\Test1\obj\Debug\net8.0\Test1.genruntimeconfig.cache
+C:\_ProgectNeuronNetwork\Test1\obj\Debug\net8.0\ref\Test1.dll
