@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
 using System.Text;
@@ -23,7 +24,7 @@ namespace Test1
             CreateOutputLayer();
         }
 
-        public Neuron FeedForward(List<double> inputSignals)
+        public Neuron FeedForward(params double[] inputSignals)
         {
             SendSignalsToInputNeurons(inputSignals);
             FeedForwardAllLayersAfrerInput();
@@ -32,6 +33,48 @@ namespace Test1
             else
                 return Layers.Last().Neurons.OrderByDescending(n => n.Output).First();
 
+        }
+
+        public double Learn(List<Tuple<double, double[]>> dataset, int epoch)
+        {
+            double error = 0.0;
+            for (int x = 0; x < epoch; x++)
+            {
+                foreach (var data in dataset)
+                {
+                    BackPropagation(data.Item1, data.Item2);    
+                }
+            }
+            return error / epoch;
+        }
+
+        //метод обратного распространения ошибки
+        private double BackPropagation(double expected, params double[] inputs)
+        {
+            double actual = FeedForward(inputs).Output;
+            double difference = actual - expected;
+            foreach(Neuron neuron in Layers.Last().Neurons) 
+            {
+                neuron.Learn(difference, Topology.LearningRaid);
+            }
+
+            for (int x = Layers.Count - 2; x >= 0; x--)
+            {
+                Layer layer = Layers[x];
+                Layer previousLayer = Layers[x + 1];
+
+                for (int y = 0; y < layer.Count; y++)
+                {
+                    Neuron neuron = layer.Neurons[y];
+                    for (int k = 0; k < previousLayer.Count; k++)
+                    {
+                        Neuron neuronPrev = previousLayer.Neurons[k];
+                        double error = neuronPrev.Weights[y] * neuronPrev.Delta;
+                        neuron.Learn(error, Topology.LearningRaid);
+                    }
+                }
+            }
+            return difference * difference;
         }
 
         public void FeedForwardAllLayersAfrerInput()
@@ -48,9 +91,9 @@ namespace Test1
 
         }
 
-        private void SendSignalsToInputNeurons(List<double> inputSignals)
+        private void SendSignalsToInputNeurons(params double[] inputSignals)
         {
-            for (int x = 0; x < inputSignals.Count; x++)
+            for (int x = 0; x < inputSignals.Length; x++)
             {
                 List<double> signal = new List<double>() { inputSignals[x] };
                 Neuron neuron = Layers[0].Neurons[x];

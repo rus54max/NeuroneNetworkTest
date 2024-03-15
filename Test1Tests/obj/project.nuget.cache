@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "WKmyt66tDtyBQLDXY/2vweuVYy/DAiD/10YVpx4PLITqiqJNxAzwejGJh58BPDYczSY7q7dtyoAkRTmtdYqFhw==",
+  "dgSpecHash": "Qxg/HZ20HJqO0ub2CoXYgL33SBlZWLavWrlFIAm8b0fpkDf4ua5TwI5joi1Tbm6f2UpEJzSIJ1T2I1nyYlUbFw==",
   "success": true,
-  "projectFilePath": "C:\\_ProgectNeuronNetwork\\Test1Tests\\Test1Tests.csproj",
+  "projectFilePath": "C:\\_Progects\\_ProgectNeuronNetwork\\Test1Tests\\Test1Tests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Max\\.nuget\\packages\\coverlet.collector\\6.0.0\\coverlet.collector.6.0.0.nupkg.sha512",
     "C:\\Users\\Max\\.nuget\\packages\\microsoft.codecoverage\\17.6.0\\microsoft.codecoverage.17.6.0.nupkg.sha512",

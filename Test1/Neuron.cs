@@ -9,17 +9,26 @@ namespace Test1
     public class Neuron
     {
         public List<double> Weights { get; }
+        public List<double> Inputs { get; }
         public EnNeuronType NeuronType { get; }
         public double Output { get; private set; }
+        public double Delta { get; private set; }
 
         public Neuron(int inputCount, EnNeuronType neuronType = EnNeuronType.Normal)
         {
             NeuronType = neuronType;
             Weights = new List<double>();
+            Inputs = new List<double>();
+            InitWeightsRandomValues(inputCount);
+        }
+
+        private void InitWeightsRandomValues(int inputCount)
+        {
+            Random rnd = new Random();
             for (int i = 0; i < inputCount; i++)
             {
-                Weights.Add(1);
-
+                Weights.Add(rnd.NextDouble());
+                Inputs.Add(0);
             }
         }
 
@@ -27,7 +36,10 @@ namespace Test1
         {
             double sum = 0.0;
             for (int i = 0; i < inputs.Count; i++)
+            {
+                Inputs[i] = inputs[i];
                 sum += inputs[i] * Weights[i];
+            }
             if (NeuronType != EnNeuronType.Input)
                 Output = Sigmoid(sum);
             else
@@ -40,12 +52,35 @@ namespace Test1
             return 1.0 / (1.0 + Math.Pow(Math.E, -x));
         }
 
+        public double SigmoidDx(double x)
+        {
+            double sigmoid = Sigmoid(x);
+            double result = sigmoid / (1 - sigmoid);
+            return result;
+        }
+
         public void SetWeights(params double[] weights)
         {
             //TODO потом убрать
             for (int i = 0; i < weights.Length; i++)
             {
                 Weights[i] = weights[i];
+            }
+        }
+
+        public void Learn(double error, double learningRaid)
+        {
+            if (NeuronType == EnNeuronType.Input)
+                return;
+
+            Delta = error * SigmoidDx(Output);
+            for (int x = 0; x < Weights.Count; x++)
+            {
+                double weight = Weights[x];
+                double input = Inputs[x];
+
+                double newWeight = weight - input * Delta * learningRaid;
+                Weights[x] = newWeight;
             }
         }
 
