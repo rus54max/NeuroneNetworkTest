@@ -27,7 +27,10 @@ namespace Test1
             Random rnd = new Random();
             for (int i = 0; i < inputCount; i++)
             {
-                Weights.Add(rnd.NextDouble());
+                if (NeuronType == EnNeuronType.Input)
+                    Weights.Add(1);
+                else
+                    Weights.Add(rnd.NextDouble());
                 Inputs.Add(0);
             }
         }
@@ -59,14 +62,14 @@ namespace Test1
             return result;
         }
 
-        public void SetWeights(params double[] weights)
-        {
-            //TODO потом убрать
-            for (int i = 0; i < weights.Length; i++)
-            {
-                Weights[i] = weights[i];
-            }
-        }
+        //public void SetWeights(params double[] weights)
+        //{
+        //    //TODO потом убрать
+        //    for (int i = 0; i < weights.Length; i++)
+        //    {
+        //        Weights[i] = weights[i];
+        //    }
+        //}
 
         public void Learn(double error, double learningRaid)
         {

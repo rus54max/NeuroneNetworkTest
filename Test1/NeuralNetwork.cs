@@ -125,7 +125,7 @@ namespace Test1
                     Neuron neuron = new Neuron(lastLayer.Count);
                     neurons.Add(neuron);
                 }
-                Layer layer = new Layer(neurons, EnNeuronType.Output);
+                Layer layer = new Layer(neurons);
                 Layers.Add(layer);
 
             }
