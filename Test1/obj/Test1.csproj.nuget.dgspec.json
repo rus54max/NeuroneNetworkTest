@@ -1,33 +1,32 @@
 {
   "format": 1,
   "restore": {
-    "C:\\_Progects\\_ProgectNeuronNetwork\\Test1\\Test1.csproj": {}
+    "C:\\Users\\Юрий\\source\\repos\\NeuroneNetworkTest\\Test1\\Test1.csproj": {}
   },
   "projects": {
-    "C:\\_Progects\\_ProgectNeuronNetwork\\Test1\\Test1.csproj": {
+    "C:\\Users\\Юрий\\source\\repos\\NeuroneNetworkTest\\Test1\\Test1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\_Progects\\_ProgectNeuronNetwork\\Test1\\Test1.csproj",
+        "projectUniqueName": "C:\\Users\\Юрий\\source\\repos\\NeuroneNetworkTest\\Test1\\Test1.csproj",
         "projectName": "Test1",
-        "projectPath": "C:\\_Progects\\_ProgectNeuronNetwork\\Test1\\Test1.csproj",
-        "packagesPath": "C:\\Users\\Max\\.nuget\\packages\\",
-        "outputPath": "C:\\_Progects\\_ProgectNeuronNetwork\\Test1\\obj\\",
+        "projectPath": "C:\\Users\\Юрий\\source\\repos\\NeuroneNetworkTest\\Test1\\Test1.csproj",
+        "packagesPath": "C:\\Users\\Юрий\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Юрий\\source\\repos\\NeuroneNetworkTest\\Test1\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Max\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Юрий\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -40,11 +39,26 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.ML": {
+              "target": "Package",
+              "version": "[3.0.1, )"
+            },
+            "Microsoft.ML.FastTree": {
+              "target": "Package",
+              "version": "[3.0.1, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -61,7 +75,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

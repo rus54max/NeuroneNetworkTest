@@ -8,6 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Test1
-build_property.ProjectDir = C:\_Progects\_ProgectNeuronNetwork\Test1\
+build_property.ProjectDir = C:\Users\Юрий\source\repos\NeuroneNetworkTest\Test1\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
