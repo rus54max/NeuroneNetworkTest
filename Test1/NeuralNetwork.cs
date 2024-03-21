@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
 using System.Text;
@@ -35,17 +36,83 @@ namespace Test1
 
         }
 
-        public double Learn(List<Tuple<double, double[]>> dataset, int epoch)
+        public double Learn(double[] expected, double[,] inputs, int epoch)
         {
+            double[,] signals = Normalization(inputs);
             double error = 0.0;
             for (int x = 0; x < epoch; x++)
             {
-                foreach (var data in dataset)
+                for (int j = 0; j < expected.Length; j++)
                 {
-                    BackPropagation(data.Item1, data.Item2);    
+                    double output = expected[j];
+                    double[] input = GetRow<double>(signals, j);
+
+                    BackPropagation(output, input); //todo input - signal
                 }
             }
             return error / epoch;
+        }
+
+        public static T[] GetRow<T>(T[,] matrix, int row)
+        {
+            int column = matrix.GetLength(1);
+            T[] array = new T[column];
+            for (int i = 0; i < column; ++i)
+                array[i] = matrix[row, i];
+            return array;
+        }
+
+        private double[,] Scalling(double[,] inputs)
+        {
+            double[,] result = new double[inputs.GetLength(0), inputs.GetLength(1)];
+            for (int column = 0; column < inputs.GetLength(1); column++)
+            {
+                double min = inputs[0, column];
+                double max = inputs[0, column];
+
+                for (int row = 1; row < inputs.GetLength(0); row++)
+                {
+                    double item = inputs[row, column];
+                    if (item < min)
+                        min = item;
+
+                    if (item > max)
+                        max = item;
+                }
+                double divider = max - min;
+                for (int row = 0; row < inputs.GetLength(0); row++)
+                    result[row, column] = (inputs[row, column] - min) / divider;
+
+            }
+            return result;
+        }
+
+        private double[,] Normalization(double[,] inputs)
+        {
+            double[,] result = new double[inputs.GetLength(0), inputs.GetLength(1)];
+            for (int column = 0; column < inputs.GetLength(1); column++)
+            {
+                //Среднее значение сигнала нейрона
+                double sum = 0.0;
+                for (int row = 0; row < inputs.GetLength(0); row++)
+                {
+                    sum += inputs[row, column];
+                }
+                double average = sum / inputs.GetLength(0);
+                //стандартное квадратичное значение нейтона
+                double error = 0.0;
+                for (int row = 0; row < inputs.GetLength(0); row++)
+                {
+                    error += Math.Pow(inputs[row, column] - average, 2);
+                }
+                double standardError = Math.Sqrt(error / inputs.GetLength(0));
+                for (int row = 0; row < inputs.GetLength(0); row++)
+                {
+                    result[row, column] = (inputs[row, column] - average) / standardError;
+                }
+
+            }
+            return result;
         }
 
         //метод обратного распространения ошибки
@@ -53,7 +120,7 @@ namespace Test1
         {
             double actual = FeedForward(inputs).Output;
             double difference = actual - expected;
-            foreach(Neuron neuron in Layers.Last().Neurons) 
+            foreach (Neuron neuron in Layers.Last().Neurons)
             {
                 neuron.Learn(difference, Topology.LearningRaid);
             }
